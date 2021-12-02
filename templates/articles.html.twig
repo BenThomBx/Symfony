@@ -1,0 +1,48 @@
+
+
+{% extends "base.html.twig" %}
+{% block metatitle %}articles{% endblock metatitle %}
+{% block css %}
+    <link href="{{asset("css/articles.css")}}" rel="stylesheet">
+    <!-- COMMENTAIRE : Ci-dessus le nom de la page dans le bloc flexible metatitle issu de base.html.twig et le lien vers le
+ css header et footer et Ci-dessous le block main, c'est à dire la partie propre à la page articles: l'ouverture et la
+ fermeture du block sont marqués par block main et endblock main.nota: le doctype n'est présent qu'une seule fois :
+  dans base.html.twig-->
+
+{% endblock css %}
+
+{% block main %}
+
+            <div class="article">
+                <!-- la boucle for permet de parcourir l'ensemble des éléments article de la pseudo-BDD $articles.
+                La condition if, permet de n'afficher que les titres dont la valeur booléenne de la clé isPubished est
+                vraie -->
+                {% for article in articles %}
+                    {% if article.isPublished %}
+                    <div class="card">
+                        <h2>{{ article.title }}</h2>
+                        <div>
+                            <img src="{{ article.image }}", alt="{{ article.title }}">
+                        </div>
+
+                        <div class="content">
+                            <p >{{ article.content }}</p>
+                        </div>
+                        <div class="link">
+                            <a href=" {{path('article', {"id": article.id})}} ">Voir l'article</a>
+                        </div>
+                    </div>
+                    {% endif %}
+                {% endfor %}
+            </div>
+
+{% endblock main %}
+
+
+
+
+
+
+
+
+

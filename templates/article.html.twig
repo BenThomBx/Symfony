@@ -1,0 +1,23 @@
+
+{% extends "base.html.twig" %}
+{% block metatitle %}article{% endblock metatitle %}
+{% block css %}
+    <link href="{{asset('css/style.css')}}" rel="stylesheet">
+{% endblock css %}
+<!-- COMMENTAIRE : Ci-dessus le lien vers le css header et footer et Ci-dessous le block main, c'est à dire la partie
+propre à la page article.-->
+{% block main %}
+
+    {% for article in articles %}
+        {% if article.isPublished %}
+            <article>
+                <h2>{{ article.title }}</h2>
+                <p>{{ article.content }}</p>
+                <img src="{{ article.image }}" alt="{{ article.title }}">
+                <a href="{{ path('article_show', {'id': article.id}) }}">Voir l'article</a>
+            </article>
+        {% endif %}
+    {% endfor %}
+
+{% endblock main %}
+

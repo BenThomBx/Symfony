@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>{% block metatitle %}base{% endblock metatitle %}</title>
+    <!-- COMMENTAIRE : le fichier 'base' rassemble les éléments des pages qui se répètent. Il est relié à une page HTML qui permet aussi
+     de ne pas répéter la mise en forme pour chaque page. Ainsi dans le fichier base.html.twig du dossier template
+     on retrouve généralement les balises <hearder> et <footer>. Pour lier base.html.twig aux différentes pages du site,
+     on utilise une organisation par blocks. Dans la balise titre de chaque page et pour le css on utilise une notation
+     permettant de laisser varier les valeurs-->
+    {% block css %}
+    {% endblock css %}
+    <link href="{{asset('css/style.css')}}" rel="stylesheet">
+</head>
+<body>
+<header>
+    <h1>LA TROUPE DU SPLENDID</h1>
+</header>
+<nav>
+    <!--Les "path" ci-dessous, issus de la 'name' dans la @Route du controller, indique le chemin vers l'url de chaque
+    page par http -->
+    <ul id="navbar">
+        <li>
+            <a href="{{ path('profile') }}">profile</a>
+
+        </li>
+        <li><a href="{{ path('articles') }}">articles</a>
+
+        </li>
+        <li>
+            <a href="{{ path('contact') }}">contact</a>
+
+        </li>
+    </ul>
+</nav>
+
+<main>
+    <!--COMMENTAIRE : dans le block on retrouvera les déclinaisons des différentes pages dans leur partie variable,
+    alors que les header et footer décrits ici apparaitront identiques pour chaque page dans le navigateur-->
+{% block main %}{% endblock main %}
+</main>
+
+<footer></footer>
+
+</body>
+</html>
